@@ -26,40 +26,6 @@ struct node *insert_front(struct node *a, int v){
   return n;
 }
 
-/*void free_list(struct node *a){
-  print_list(a);
-  struct node *b = a;
-  while(a){
-    if (!(a->next)){
-      free(a);
-      a = 0;
-      printf("freed\n");
-    }
-    else{
-      if(!((a->next)->next)){
-        free_list(a->next);
-        a->next = 0;
-      }
-      else{
-        free_list(a->next);
-      }
-    }
-    a = b;
-  }
-  return;
-}
-*/
-
-/*struct node *free_list(struct node *a){
-  while(a!=NULL){
-    free_help(a);
-    printf("%p\n",a);
-  }
-  printf("ayy");
-  return a;
-}
-*/
-
 void free_node(struct node *a){
   if (!(a->next)){
     free(a);
@@ -77,7 +43,7 @@ struct node *free_list(struct node *a){
   return r;
 }
 
-int main(){
+ int main(){
   struct node* a;
   a = (struct node*)malloc(sizeof(struct node));
   struct node* b;
@@ -86,12 +52,15 @@ int main(){
   b->c = 2;
   a->next = b;
   b->next = 0;
+  printf("list a is: ");
   print_list(a);
   struct node* n;
+  printf("adding 0 in front of list a\n");
   n = insert_front(a, 0);
+  printf("after adding: ");
   print_list(n);
   printf("\n");
   printf("freeing\n");
-  printf("%p",free_list(n));
+  printf("pointer after freeing: %p",free_list(n));
   return 0;
 }
